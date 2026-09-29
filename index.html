@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Spotify - Ouvinte</title>
+  </head>
+  <body>
+    <div class="spotify-container">
+      <aside class="sidebar">
+        <div class="logo">Spotify</div>
+        <nav>
+          <ul>
+            <li><a href="#" class="active">Início</a></li>
+            <li>
+              <a href="admin.html" class="btn-link">⚙️ Painel do Criador</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+            <h2>Músicas Disponíveis</h2>
+        </header>
+        <div class="song-grid" id="songContainer"></div>
+      </main>
+
+      <!-- BARRA DE BAIXO (Clicável para abrir o player grande) -->
+      <footer class="player-bar">
+        <div class="now-playing" id="nowPlayingBar" style="cursor: pointer;">
+          <img id="currentCover" src="https://via.placeholder.com/56" alt="Capa">
+          <div class="track-info">
+            <span id="currentTitle">Selecione uma música</span>
+            <small id="currentArtist">-</small>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <button id="playBtn">▶</button>
+          <input type="range" id="progressBar" value="0" max="100">
+        </div>
+        <div class="volume-control">
+          <input type="range" id="volumeBar" min="0" max="1" step="0.1" value="0.8">
+        </div>
+      </footer>
+    </div>
+
+    <!-- PLAYER EM ECRÃ INTEIRO (MODAL SPOTIFY) -->
+    <div id="fullPlayerModal" class="full-player-modal hidden">
+      <button id="closeFullPlayer" class="close-btn">✕</button>
+      
+      <div class="full-player-content">
+        <img id="fullCover" src="https://via.placeholder.com/300" alt="Capa Grande">
+        
+        <div class="full-track-info">
+          <h1 id="fullTitle">Título da Música</h1>
+          <h3 id="fullArtist">Artista</h3>
+        </div>
+
+        <div class="full-controls">
+          <input type="range" id="fullProgressBar" value="0" max="100">
+          <div class="full-buttons">
+            <button id="fullPlayBtn" class="big-play-btn">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <audio id="audioPlayer"></audio>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

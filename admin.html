@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify - Painel do Criador</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-container">
+    <header class="admin-header">
+      <h1>Painel do Criador</h1>
+      <a href="index.html" class="btn-secondary">← Voltar para o Player</a>
+    </header>
+
+    <main class="admin-main">
+      <section class="form-section">
+        <h2 id="formTitle">Adicionar Nova Música</h2>
+        <form id="adminSongForm">
+          <input type="hidden" id="songId">
+
+          <div class="form-group">
+            <label for="inputTitle">Título</label>
+            <input type="text" id="inputTitle" placeholder="Ex: Blinding Lights" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inputArtist">Artista</label>
+            <input type="text" id="inputArtist" placeholder="Ex: The Weeknd" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inputCover">Imagem da Capa</label>
+            <input type="file" id="inputCover" accept="image/*">
+          </div>
+
+          <div class="form-group">
+            <label for="inputAudio">Arquivo MP3</label>
+            <input type="file" id="inputAudio" accept="audio/*">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btnSave" class="btn-primary">Salvar Música</button>
+            <button type="button" id="btnCancel" class="btn-secondary hidden">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="list-section">
+        <h2>A Tua Biblioteca</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Capa</th>
+              <th>Título</th>
+              <th>Artista</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
