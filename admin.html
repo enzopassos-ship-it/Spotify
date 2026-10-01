@@ -1,68 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify - Painel do Criador</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="admin-container">
-    <header class="admin-header">
-      <h1>Painel do Criador</h1>
-      <a href="index.html" class="btn-secondary">← Voltar para o Player</a>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Criador – Spotify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <div class="admin-container">
+      <header class="admin-header">
+        <div class="admin-title-box">
+          <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Player</a>
+          <h1>Painel do Criador</h1>
+        </div>
+      </header>
 
-    <main class="admin-main">
-      <section class="form-section">
-        <h2 id="formTitle">Adicionar Nova Música</h2>
-        <form id="adminSongForm">
-          <input type="hidden" id="songId">
+      <div class="admin-grid">
+        <!-- FORMULÁRIO DE CADASTRO / EDIÇÃO -->
+        <section class="admin-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-circle-plus"></i> <span id="formTitleText">Adicionar Nova Música</span></h2>
+          </div>
+          <form id="addSongForm" class="admin-form">
+            <div class="form-group">
+              <label for="songTitle">Título da Música</label>
+              <input type="text" id="songTitle" placeholder="Ex: Corsa do Buiu 2" required />
+            </div>
 
-          <div class="form-group">
-            <label for="inputTitle">Título</label>
-            <input type="text" id="inputTitle" placeholder="Ex: Blinding Lights" required>
+            <div class="form-group">
+              <label for="songArtist">Artista</label>
+              <input type="text" id="songArtist" placeholder="Ex: Nicolas Marques" required />
+            </div>
+
+            <div class="form-group">
+              <label for="coverFile">Capa da Música (Imagem do computador)</label>
+              <input type="file" id="coverFile" accept="image/*" />
+              <small id="coverStatus" class="input-status-text"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="audioFile">Ficheiro Áudio (MP3 do computador)</label>
+              <input type="file" id="audioFile" accept="audio/*" />
+              <small id="audioStatus" class="input-status-text"></small>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" id="saveBtn">
+                <i class="fa-solid fa-upload" id="saveBtnIcon"></i> 
+                <span id="saveBtnText">Guardar Música</span>
+              </button>
+              <button type="button" class="btn-cancel hidden" id="cancelEditBtn">
+                <i class="fa-solid fa-xmark"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- TABELA DE MÚSICAS REGISTADAS -->
+        <section class="admin-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-music"></i> Músicas no Sistema</h2>
           </div>
 
-          <div class="form-group">
-            <label for="inputArtist">Artista</label>
-            <input type="text" id="inputArtist" placeholder="Ex: The Weeknd" required>
+          <div class="table-wrapper">
+            <table class="song-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px;">Capa</th>
+                  <th>Título</th>
+                  <th>Artista</th>
+                  <th style="width: 110px; text-align: right;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="adminSongList">
+                <!-- Preenchido via JavaScript -->
+              </tbody>
+            </table>
           </div>
+        </section>
+      </div>
+    </div>
 
-          <div class="form-group">
-            <label for="inputCover">Imagem da Capa</label>
-            <input type="file" id="inputCover" accept="image/*">
-          </div>
-
-          <div class="form-group">
-            <label for="inputAudio">Arquivo MP3</label>
-            <input type="file" id="inputAudio" accept="audio/*">
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" id="btnSave" class="btn-primary">Salvar Música</button>
-            <button type="button" id="btnCancel" class="btn-secondary hidden">Cancelar</button>
-          </div>
-        </form>
-      </section>
-
-      <section class="list-section">
-        <h2>A Tua Biblioteca</h2>
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Capa</th>
-              <th>Título</th>
-              <th>Artista</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="adminTableBody"></tbody>
-        </table>
-      </section>
-    </main>
-  </div>
-
-  <script type="module" src="admin.js"></script>
-</body>
+    <script type="module" src="admin.js"></script>
+  </body>
 </html>
