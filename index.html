@@ -1,142 +1,172 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spotify Clone</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Elemento de áudio -->
-  <audio id="audioPlayer"></audio>
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-PT"> <!-- Elemento raiz configurado para Português de Portugal -->
+<head> <!-- Cabeçalho do documento contendo metadados e folhas de estilo -->
+  <meta charset="UTF-8" /> <!-- Define a codificação de caracteres UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Garante a responsividade em dispositivos móveis -->
+  <title>Spotify Clone</title> <!-- Título do documento apresentado no separador -->
+  <!-- Configuração PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#121212">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Importa os ícones do FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Importa a fonte Montserrat do Google Fonts -->
 
-  <div class="spotify-layout">
+  <link rel="stylesheet" href="style.css"> <!-- Importa a folha de estilos principal da aplicação -->
+</head> <!-- Fim da secção de cabeçalho -->
+<body> <!-- Início do corpo principal da aplicação -->
+
+  <!-- Elemento HTML de Áudio (Escondido) --> <!-- Comentário sobre o elemento de leitor de áudio nativo -->
+  <audio id="audioPlayer"></audio> <!-- Elemento invisível de áudio HTML5 manipulado pelo JavaScript -->
+
+  <div class="spotify-layout"> <!-- Contentor principal em grelha para toda a interface do leitor -->
     
-    <!-- BARRA LATERAL (SIDEBAR) -->
-    <aside class="sidebar">
-      <nav class="nav-block">
-        <ul>
-          <li>
-            <a href="#" id="btnNavHome" class="active">
-              <i class="fa-solid fa-house"></i>
-              <span>Início</span>
-            </a>
-          </li>
-          <li>
-            <a href="admin.html">
-              <i class="fa-solid fa-sliders"></i>
-              <span>Painel do Criador</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <!-- 1. Navegação e acesso à playlist de músicas curtidas. --> <!-- Comentário da barra lateral -->
+    <aside class="sidebar"> <!-- Barra lateral de navegação e biblioteca -->
+     <nav class="nav-block"> <!-- Bloco de navegação principal -->
+  <ul> <!-- Lista de hiperligações da barra lateral -->
+    <li> <!-- Item da lista para navegação inicial -->
+      <a href="#" id="btnNavHome" class="active">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
+      </a>
+    </li>
+    
+    <!-- Item adicionado para aceder às Músicas Curtidas -->
+    <li>
+      <a href="#" id="btnNavLiked">
+        <i class="fa-solid fa-heart"></i>
+        <span>Curtidas</span>
+      </a>
+    </li>
 
-      <div class="library-block">
-        <div class="library-header">
-          <button class="lib-btn">
-            <i class="fa-solid fa-book"></i>
-            <span>A tua Biblioteca</span>
-          </button>
-          <button class="icon-only-btn"><i class="fa-solid fa-plus"></i></button>
-        </div>
+    <li> <!-- Item da lista para o painel de administração -->
+      <a href="admin.html">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Painel do Criador</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+      <div class="library-block"> <!-- Bloco da biblioteca do utilizador -->
+        <div class="library-header"> <!-- Cabeçalho do bloco de biblioteca -->
+          <button class="lib-btn"> <!-- Botão do título da biblioteca -->
+            <i class="fa-solid fa-book"></i> <!-- Ícone de livro -->
+            <span>A tua Biblioteca</span> <!-- Texto da biblioteca -->
+          </button> <!-- Fim do botão -->
+          <button class="icon-only-btn"><i class="fa-solid fa-plus"></i></button> <!-- Botão com ícone para adicionar novos elementos -->
+        </div> <!-- Fim do cabeçalho da biblioteca -->
 
-        <div class="library-list">
-          <div id="btnNavLiked" class="lib-item">
-            <div class="lib-icon-box">
-              <i class="fa-solid fa-heart"></i>
-            </div>
-            <div class="lib-info">
-              <span class="title">Músicas Curtidas</span>
-              <span class="sub" id="likedCountText">Playlist • 0 músicas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
+        <div class="library-list"> <!-- Lista com os elementos guardados na biblioteca -->
+          <div id="btnNavLiked" class="lib-item"> <!-- Item interativo para a lista de músicas curtidas -->
+            <div class="lib-icon-box"> <!-- Caixa de ícone com gradiente para a lista de curtidas -->
+              <i class="fa-solid fa-heart"></i> <!-- Ícone do coração -->
+            </div> <!-- Fim da caixa de ícone -->
+            <div class="lib-info"> <!-- Informações do item da biblioteca -->
+              <span class="title">Músicas Curtidas</span> <!-- Título da playlist de curtidas -->
+              <span class="sub" id="likedCountText">Playlist • 0 músicas</span> <!-- Contagem dinâmica de músicas curtidas -->
+            </div> <!-- Fim das informações -->
+          </div> <!-- Fim do item de músicas curtidas -->
+        </div> <!-- Fim da lista da biblioteca -->
+      </div> <!-- Fim do bloco da biblioteca -->
+    </aside> <!-- Fim da barra lateral -->
 
-    <!-- CONTEÚDO PRINCIPAL (MAIN VIEW) -->
-    <main class="main-view">
-      <header class="top-nav">
-        <div class="nav-arrows">
-        </div>
-        <button class="profile-btn"><i class="fa-solid fa-user"></i></button>
-      </header>
+    <!-- 2. Área onde são mostradas a página inicial e as curtidas. --> <!-- Comentário sobre a vista principal -->
+    <main class="main-view"> <!-- Painel principal de conteúdos -->
+      <header class="top-nav"> <!-- Barra superior com controlos de navegação e perfil -->
+        <div class="nav-arrows"> <!-- Contentor para os botões de navegação de histórico -->
+          <button class="circle-btn"><i class="fa-solid fa-chevron-left"></i></button> <!-- Botão para retroceder no histórico -->
+          <button class="circle-btn"><i class="fa-solid fa-chevron-right"></i></button> <!-- Botão para avançar no histórico -->
+        </div> <!-- Fim das setas de navegação -->
+        <button class="profile-btn"><i class="fa-solid fa-user"></i></button> <!-- Botão do perfil de utilizador com ícone -->
+      </header> <!-- Fim da barra superior -->
 
-      <div class="content-container">
-        <!-- VISTA 1: INÍCIO (MÚSICAS DISPONÍVEIS) -->
-        <section id="homeView" class="view-section">
-          <div class="section-header">
-            <h2>Músicas Disponíveis</h2>
-          </div>
-          <div id="songGrid" class="song-grid">
-            <!-- Músicas carregadas via JavaScript -->
-          </div>
-        </section>
+      <div class="content-container"> <!-- Contentor dinâmico das secções da vista principal -->
+        <!-- VISTA 1: INÍCIO --> <!-- Comentário sobre a vista de início -->
+        <section id="homeView" class="view-section"> <!-- Secção da vista principal de catálogo -->
+          <div class="section-header"> <!-- Cabeçalho da secção -->
+            <h2>Músicas Disponíveis</h2> <!-- Título da secção de catálogo de músicas -->
+          </div> <!-- Fim do cabeçalho -->
+          <div id="songGrid" class="song-grid"> <!-- Grelha preenchida com os cartões de música via JavaScript -->
+          </div> <!-- Fim da grelha de músicas -->
+        </section> <!-- Fim da secção de início -->
 
-        <!-- VISTA 2: MÚSICAS CURTIDAS -->
-        <section id="likedView" class="view-section hidden">
-          <div class="liked-banner">
-            <div class="liked-cover-large">
-              <i class="fa-solid fa-heart"></i>
-            </div>
-            <div class="liked-details">
-              <span class="badge">PLAYLIST</span>
-              <h1>Músicas Curtidas</h1>
-              <p id="likedBannerSubtitle">0 músicas</p>
-            </div>
-          </div>
+        <!-- VISTA 2: MÚSICAS CURTIDAS --> <!-- Comentário sobre a vista de curtidas -->
+        <section id="likedView" class="view-section hidden"> <!-- Secção com as músicas favoritadas (inicialmente oculta) -->
+          <div class="liked-banner"> <!-- Banner com gradiente e capa grande das músicas curtidas -->
+            <div class="liked-cover-large"> <!-- Caixa da imagem de capa de grande dimensão -->
+              <i class="fa-solid fa-heart"></i> <!-- Ícone grande do coração -->
+            </div> <!-- Fim do quadrado da capa -->
+            <div class="liked-details"> <!-- Detalhes em texto da playlist de curtidas -->
+              <span class="badge">PLAYLIST</span> <!-- Etiqueta identificadora do tipo de conteúdo -->
+              <h1>Músicas Curtidas</h1> <!-- Título grande da playlist de músicas curtidas -->
+              <p id="likedBannerSubtitle">0 músicas</p> <!-- Subtítulo com contagem dinâmica de músicas curtidas -->
+            </div> <!-- Fim dos detalhes -->
+          </div> <!-- Fim do banner -->
 
-          <div id="likedSongGrid" class="song-grid">
-            <!-- Músicas curtidas carregadas via JavaScript -->
-          </div>
-        </section>
-      </div>
-    </main>
+          <div id="likedSongGrid" class="song-grid"> <!-- Grelha contendo apenas os cartões das músicas favoritas -->
+          </div> <!-- Fim da grelha de curtidas -->
+        </section> <!-- Fim da secção de curtidas -->
+      </div> <!-- Fim do contentor de conteúdos -->
+    </main> <!-- Fim da secção principal -->
 
-    <!-- PLAYER INFERIOR -->
-    <footer class="player-bar">
-      <div class="now-playing">
-        <div class="cover-container">
-          <img id="currentCover" src="https://via.placeholder.com/56" alt="Capa" />
-        </div>
-        <div class="track-details">
-          <span id="currentTitle" class="track-title">Selecione uma música</span>
-          <span id="currentArtist" class="track-artist">-</span>
-        </div>
-        <button id="playerHeartBtn" class="icon-btn heart-btn" title="Curtir">
-          <i class="fa-regular fa-heart"></i>
-        </button>
-      </div>
+    <!-- 3. Player fixo com informação da faixa, controlos e volume. --> <!-- Comentário da barra inferior do leitor -->
+    <footer class="player-bar"> <!-- Barra fixa inferior do leitor de música -->
+      <!-- Informações da Música Atual --> <!-- Comentário sobre os dados da música em reprodução -->
+      <div class="now-playing"> <!-- Contentor das informações da música em reprodução -->
+        <div class="cover-container"> <!-- Contentor da miniatura da capa da faixa -->
+          <img id="currentCover" src="https://via.placeholder.com/56" alt="Capa" /> <!-- Imagem dinâmica da capa da música atual -->
+        </div> <!-- Fim do contentor da capa -->
+        <div class="track-details"> <!-- Nomes da música e do artista em execução -->
+          <span id="currentTitle" class="track-title">Selecione uma música</span> <!-- Título dinâmico da música atual -->
+          <span id="currentArtist" class="track-artist">-</span> <!-- Nome dinâmico do artista atual -->
+        </div> <!-- Fim dos detalhes da faixa -->
+        <button id="playerHeartBtn" class="icon-btn heart-btn" title="Curtir"> <!-- Botão para curtir/descurtir a faixa atual -->
+          <i class="fa-regular fa-heart"></i> <!-- Ícone de coração -->
+        </button> <!-- Fim do botão de curtir -->
+      </div> <!-- Fim das informações da música atual -->
 
-      <div class="player-center">
-        <div class="player-controls">
-          <button id="shuffleBtn" class="icon-btn"><i class="fa-solid fa-shuffle"></i></button>
-          <button id="prevBtn" class="icon-btn"><i class="fa-solid fa-backward-step"></i></button>
-          <button id="playBtn" class="play-main-btn"><i class="fa-solid fa-play"></i></button>
-          <button id="nextBtn" class="icon-btn"><i class="fa-solid fa-forward-step"></i></button>
-          <button id="repeatBtn" class="icon-btn"><i class="fa-solid fa-repeat"></i></button>
-        </div>
-        <div class="progress-bar-wrapper">
-          <span id="currentTime" class="time">0:00</span>
-          <div class="range-slider">
-            <input type="range" id="progressBar" value="0" min="0" max="100">
-          </div>
-          <span id="totalDuration" class="time">0:00</span>
-        </div>
-      </div>
+      <!-- Controlos do Leitor e Progresso --> <!-- Comentário dos controlos centrais -->
+      <div class="player-center"> <!-- Contentor dos botões de reprodução e barra de progresso -->
+        <div class="player-controls"> <!-- Grupo de botões de controlo do leitor -->
+          <button id="shuffleBtn" class="icon-btn"><i class="fa-solid fa-shuffle"></i></button> <!-- Botão para reprodução aleatória -->
+          <button id="prevBtn" class="icon-btn"><i class="fa-solid fa-backward-step"></i></button> <!-- Botão para voltar à música anterior -->
+          <button id="playBtn" class="play-main-btn"><i class="fa-solid fa-play"></i></button> <!-- Botão principal de reprodução/pausa -->
+          <button id="nextBtn" class="icon-btn"><i class="fa-solid fa-forward-step"></i></button> <!-- Botão para avançar para a próxima música -->
+          <button id="repeatBtn" class="icon-btn"><i class="fa-solid fa-repeat"></i></button> <!-- Botão de repetição de faixa -->
+        </div> <!-- Fim dos botões de controlo -->
+        <div class="progress-bar-wrapper"> <!-- Contentor da barra do tempo de reprodução -->
+          <span id="currentTime" class="time">0:00</span> <!-- Contador de tempo decorrido da música -->
+          <div class="range-slider"> <!-- Invólucro do campo de progresso deslizante -->
+            <input type="range" id="progressBar" value="0" min="0" max="100"> <!-- Barra de progresso interativa da reprodução -->
+          </div> <!-- Fim do deslizador -->
+          <span id="totalDuration" class="time">0:00</span> <!-- Tempo total de duração da faixa -->
+        </div> <!-- Fim da barra de progresso -->
+      </div> <!-- Fim do centro do leitor -->
 
-      <div class="player-right">
-        <div class="volume-wrapper">
-          <i class="fa-solid fa-volume-high" style="color: var(--text-gray); font-size: 0.85rem;"></i>
-          <input type="range" id="volumeSlider" value="80" min="0" max="100">
-        </div>
-      </div>
-    </footer>
+      <!-- Controlo do Volume --> <!-- Comentário sobre a secção do controlo de volume -->
+      <div class="player-right"> <!-- Contentor à direita para regulação de som -->
+        <div class="volume-wrapper"> <!-- Envolvente do ícone e da barra de volume -->
+          <button id="volumeBtn" class="icon-btn" title="Volume"> <!-- Botão para ligar/desligar o som -->
+            <i class="fa-solid fa-volume-high"></i> <!-- Ícone do nível de volume -->
+          </button> <!-- Fim do botão de volume -->
+          <input type="range" id="volumeSlider" value="80" min="0" max="100"> <!-- Deslizador interativo do volume -->
+        </div> <!-- Fim da envolvente de volume -->
+      </div> <!-- Fim da secção direita do leitor -->
+    </footer> <!-- Fim da barra inferior do leitor -->
 
-  </div>
+  </div> <!-- Fim do layout global -->
 
-  <script type="module" src="app.js"></script>
-</body>
-</html>
+  <!-- Carrega a lógica do player como módulo JavaScript. --> <!-- Comentário sobre o carregamento do script -->
+  <script type="module" src="app.js">
+
+    // Registo do Service Worker PWA
+    
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => console.log('Service Worker registrado:', reg.scope))
+          .catch((err) => console.error('Erro ao registrar Service Worker:', err));
+      });
+    }
+  </script> <!-- Carrega a lógica da aplicação através de módulos JavaScript ES -->
+</body> <!-- Fim do corpo -->
+</html> <!-- Fim do ficheiro HTML -->

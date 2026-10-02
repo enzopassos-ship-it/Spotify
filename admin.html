@@ -1,89 +1,86 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Painel do Criador – Spotify</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="admin.css">
-  </head>
-  <body>
-    <div class="admin-container">
-      <header class="admin-header">
-        <div class="admin-title-box">
-          <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Player</a>
-          <h1>Painel do Criador</h1>
-        </div>
-      </header>
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-PT"> <!-- Elemento raiz do documento configurado em Português de Portugal -->
+  <head> <!-- Início da secção de cabeçalho com metadados e recursos externos -->
+    <meta charset="UTF-8" /> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Ajusta a largura e escala para dispositivos móveis -->
+    <title>Painel do Criador – Spotify</title> <!-- Título exibido no separador do navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Carrega os ícones do FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> <!-- Carrega a fonte Montserrat -->
+    <link rel="stylesheet" href="style.css"> <!-- Carrega os estilos globais do projeto -->
+    <link rel="stylesheet" href="admin.css"> <!-- Carrega os estilos do painel de administração -->
+  </head> <!-- Fim da secção de cabeçalho -->
+  <body> <!-- Início do corpo da página -->
+    <div class="admin-container"> <!-- Contentor principal para centralizar a interface da administração -->
+      <header class="admin-header"> <!-- Cabeçalho da área administrativa -->
+        <div class="admin-title-box"> <!-- Caixa de título e botão de regresso -->
+          <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Player</a> <!-- Botão de ligação para regressar ao leitor de áudio -->
+          <h1>Painel do Criador</h1> <!-- Título principal da página administrativa -->
+        </div> <!-- Fim da caixa de título -->
+      </header> <!-- Fim do cabeçalho da administração -->
 
-      <div class="admin-grid">
-        <!-- FORMULÁRIO DE CADASTRO / EDIÇÃO -->
-        <section class="admin-card">
-          <div class="card-header">
-            <h2><i class="fa-solid fa-circle-plus"></i> <span id="formTitleText">Adicionar Nova Música</span></h2>
-          </div>
-          <form id="addSongForm" class="admin-form">
-            <div class="form-group">
-              <label for="songTitle">Título da Música</label>
-              <input type="text" id="songTitle" placeholder="Ex: Corsa do Buiu 2" required />
-            </div>
+      <div class="admin-grid"> <!-- Grelha para dividir o formulário e a lista de músicas em colunas -->
+        <section class="admin-card"> <!-- Cartão com o formulário de criação/edição de músicas -->
+          <div class="card-header"> <!-- Cabeçalho do cartão de formulário -->
+            <h2><i class="fa-solid fa-circle-plus"></i> <span id="formTitleText">Adicionar Nova Música</span></h2> <!-- Título do formulário com ícone e texto dinâmico -->
+          </div> <!-- Fim do cabeçalho do cartão -->
+          <form id="addSongForm" class="admin-form"> <!-- Formulário para submissão dos dados da música -->
+            <div class="form-group"> <!-- Grupo do campo do título da música -->
+              <label for="songTitle">Título da Música</label> <!-- Rótulo para o campo de título -->
+              <input type="text" id="songTitle" placeholder="Ex: Nome da Música" required /> <!-- Campo de entrada de texto obrigatório para o título -->
+            </div> <!-- Fim do grupo do título -->
 
-            <div class="form-group">
-              <label for="songArtist">Artista</label>
-              <input type="text" id="songArtist" placeholder="Ex: Nicolas Marques" required />
-            </div>
+            <div class="form-group"> <!-- Grupo do campo do nome do artista -->
+              <label for="songArtist">Artista</label> <!-- Rótulo para o campo de artista -->
+              <input type="text" id="songArtist" placeholder="Ex: Nome do Artista" required /> <!-- Campo de entrada de texto obrigatório para o artista -->
+            </div> <!-- Fim do grupo do artista -->
 
-            <div class="form-group">
-              <label for="coverFile">Capa da Música (Imagem do computador)</label>
-              <input type="file" id="coverFile" accept="image/*" />
-              <small id="coverStatus" class="input-status-text"></small>
-            </div>
+            <div class="form-group"> <!-- Grupo do campo da imagem de capa -->
+              <label for="coverFile">Capa da Música</label> <!-- Rótulo para o ficheiro da capa -->
+              <input type="file" id="coverFile" accept="image/*" /> <!-- Campo de seleção de ficheiro focado em imagens -->
+              <small id="coverStatus" class="input-status-text"></small> <!-- Mensagem de estado sobre a imagem selecionada -->
+            </div> <!-- Fim do grupo da capa -->
 
-            <div class="form-group">
-              <label for="audioFile">Ficheiro Áudio (MP3 do computador)</label>
-              <input type="file" id="audioFile" accept="audio/*" />
-              <small id="audioStatus" class="input-status-text"></small>
-            </div>
+            <div class="form-group"> <!-- Grupo do campo do ficheiro de áudio -->
+              <label for="audioFile">Ficheiro Áudio (MP3)</label> <!-- Rótulo para o ficheiro de áudio -->
+              <input type="file" id="audioFile" accept="audio/*" /> <!-- Campo de seleção de ficheiro focado em áudio -->
+              <small id="audioStatus" class="input-status-text"></small> <!-- Mensagem de estado sobre o ficheiro de áudio -->
+            </div> <!-- Fim do grupo do áudio -->
 
-            <div class="form-actions">
-              <button type="submit" class="btn-primary" id="saveBtn">
-                <i class="fa-solid fa-upload" id="saveBtnIcon"></i> 
-                <span id="saveBtnText">Guardar Música</span>
-              </button>
-              <button type="button" class="btn-cancel hidden" id="cancelEditBtn">
-                <i class="fa-solid fa-xmark"></i> Cancelar
-              </button>
-            </div>
-          </form>
-        </section>
+            <div class="form-actions"> <!-- Bloco com os botões de ação do formulário -->
+              <button type="submit" class="btn-primary" id="saveBtn"> <!-- Botão principal para guardar ou atualizar a música -->
+                <i class="fa-solid fa-upload" id="saveBtnIcon"></i> <!-- Ícone do botão guardar/atualizar -->
+                <span id="saveBtnText">Guardar Música</span> <!-- Texto dinâmico do botão principal -->
+              </button> <!-- Fim do botão principal -->
+              <button type="button" class="btn-cancel hidden" id="cancelEditBtn"> <!-- Botão secundário para cancelar a edição em curso -->
+                <i class="fa-solid fa-xmark"></i> Cancelar <!-- Ícone e texto do botão cancelar -->
+              </button> <!-- Fim do botão cancelar -->
+            </div> <!-- Fim do bloco de ações -->
+          </form> <!-- Fim do formulário -->
+        </section> <!-- Fim da secção do formulário -->
 
-        <!-- TABELA DE MÚSICAS REGISTADAS -->
-        <section class="admin-card">
-          <div class="card-header">
-            <h2><i class="fa-solid fa-music"></i> Músicas no Sistema</h2>
-          </div>
+        <section class="admin-card"> <!-- Cartão com a listagem das músicas no sistema -->
+          <div class="card-header"> <!-- Cabeçalho da tabela de músicas -->
+            <h2><i class="fa-solid fa-music"></i> Músicas no Sistema</h2> <!-- Título do cartão de listagem -->
+          </div> <!-- Fim do cabeçalho da tabela -->
 
-          <div class="table-wrapper">
-            <table class="song-table">
-              <thead>
-                <tr>
-                  <th style="width: 60px;">Capa</th>
-                  <th>Título</th>
-                  <th>Artista</th>
-                  <th style="width: 110px; text-align: right;">Ações</th>
-                </tr>
-              </thead>
-              <tbody id="adminSongList">
-                <!-- Preenchido via JavaScript -->
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
-    </div>
+          <div class="table-wrapper"> <!-- Envolvente que permite rolar a tabela horizontalmente em ecrãs pequenos -->
+            <table class="song-table"> <!-- Tabela para estruturação das músicas registadas -->
+              <thead> <!-- Cabeçalho da tabela com os nomes das colunas -->
+                <tr> <!-- Linha de cabeçalho da tabela -->
+                  <th style="width: 60px;">Capa</th> <!-- Coluna da imagem de capa com largura definida -->
+                  <th>Título</th> <!-- Coluna com o título da música -->
+                  <th>Artista</th> <!-- Coluna com o nome do artista -->
+                  <th style="width: 110px; text-align: right;">Ações</th> <!-- Coluna com os botões de ação alinhada à direita -->
+                </tr> <!-- Fim da linha de cabeçalho -->
+              </thead> <!-- Fim do cabeçalho da tabela -->
+              <tbody id="adminSongList"> <!-- Corpo da tabela preenchido dinamicamente via JavaScript -->
+              </tbody> <!-- Fim do corpo da tabela -->
+            </table> <!-- Fim da tabela -->
+          </div> <!-- Fim do wrapper da tabela -->
+        </section> <!-- Fim da secção de listagem -->
+      </div> <!-- Fim da grelha administrativa -->
+    </div> <!-- Fim do contentor principal -->
 
-    <script type="module" src="admin.js"></script>
-  </body>
-</html>
+  <script type="module" src="admin.js"></script> <!-- Importa o script JavaScript da página de administração como módulo -->
+  </body> <!-- Fim do corpo do documento -->
+</html> <!-- Fim do documento HTML -->

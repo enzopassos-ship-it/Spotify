@@ -47,6 +47,7 @@ body {
 
 /* LAYOUT DE CARTÕES (2 COLUNAS) */
 .admin-grid {
+  /* Formulário e tabela lado a lado em ecrãs largos. */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
@@ -54,6 +55,7 @@ body {
 }
 
 @media (max-width: 900px) {
+  /* Em ecrãs menores, coloca os cartões um abaixo do outro. */
   .admin-grid {
     grid-template-columns: 1fr;
   }
@@ -83,6 +85,7 @@ body {
 
 /* FORMULÁRIO */
 .admin-form {
+  /* Organiza os campos do formulário numa coluna. */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -223,6 +226,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .song-table {
+  /* Remove espaços entre células para formar uma tabela contínua. */
   width: 100%;
   border-collapse: collapse;
   text-align: left;
@@ -287,4 +291,55 @@ input[type="file"]::file-selector-button:hover {
 
 .btn-delete:hover {
   color: #f15e6c !important;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE DO PAINEL ADMIN
+   ========================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .admin-header {
+    margin-bottom: 20px;
+  }
+
+  .admin-title-box h1 {
+    font-size: 1.6rem;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+
+  /* Empilha os botões do formulário na vertical */
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary, 
+  .btn-cancel {
+    width: 100%;
+  }
+
+  /* Reduz o tamanho do texto e imagens da tabela em ecrãs reduzidos */
+  .song-table th, 
+  .song-table td {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+
+  .admin-cover-thumb {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Garante rolagem horizontal suave para a tabela se necessário */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
