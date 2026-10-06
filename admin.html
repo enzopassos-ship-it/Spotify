@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <!-- Define o idioma, o título e os arquivos visuais do painel. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Criador – Spotify</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="views/style.css">
+    <link rel="stylesheet" href="views/admin.css">
+  </head>
+  <body>
+    <div class="admin-container">
+      <header class="admin-header">
+        <div class="admin-title-box">
+          <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Player</a>
+          <h1>Painel do Criador</h1>
+        </div>
+      </header>
+
+      <!-- Formulário e tabela usados para cadastrar e editar músicas. -->
+      <div class="admin-grid">
+        <section class="admin-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-circle-plus"></i> <span id="formTitleText">Adicionar Nova Música</span></h2>
+          </div>
+          <!-- Os campos recebem o título, o artista, a capa e o áudio da música. -->
+          <form id="addSongForm" class="admin-form">
+            <div class="form-group">
+              <label for="songTitle">Título da Música</label>
+              <input type="text" id="songTitle" placeholder="Ex: Nome da Música" required />
+            </div>
+
+            <div class="form-group">
+              <label for="songArtist">Artista</label>
+              <input type="text" id="songArtist" placeholder="Ex: Nome do Artista" required />
+            </div>
+
+            <div class="form-group">
+              <label for="coverFile">Capa da Música</label>
+              <input type="file" id="coverFile" accept="image/*" />
+              <small id="coverStatus" class="input-status-text"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="audioFile">Ficheiro Áudio (MP3)</label>
+              <input type="file" id="audioFile" accept="audio/*" />
+              <small id="audioStatus" class="input-status-text"></small>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" id="saveBtn">
+                <i class="fa-solid fa-upload" id="saveBtnIcon"></i>
+                <span id="saveBtnText">Guardar Música</span>
+              </button>
+              <button type="button" class="btn-cancel hidden" id="cancelEditBtn">
+                <i class="fa-solid fa-xmark"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- A lista de músicas aparece aqui, com botões para editar ou excluir. -->
+        <section class="admin-card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-music"></i> Músicas no Sistema</h2>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="song-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px;">Capa</th>
+                  <th>Título</th>
+                  <th>Artista</th>
+                  <th style="width: 110px; text-align: right;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="adminSongList">
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  <!-- Inicia o painel e registra o recurso que ajuda a página a abrir sem internet. -->
+  <script type="module">
+    // Carrega as funções que cuidam do formulário e da lista de músicas.
+    import { iniciarPainelAdmin } from "./controllers/admin-controller.js";
+
+    iniciarPainelAdmin();
+
+    // Registra o arquivo que guarda cópias do site para uso sem internet.
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js")
+        .then((registration) => console.log("Service Worker registrado:", registration.scope))
+        .catch((error) => console.error("Erro ao registrar Service Worker:", error));
+    }
+  </script>
+  </body>
+</html>

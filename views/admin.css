@@ -1,0 +1,326 @@
+/* Regras básicas usadas em todo o painel. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  padding: 32px 24px;
+}
+
+/* Largura da página e título do painel. */
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.admin-header {
+  margin-bottom: 32px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.back-btn:hover {
+  color: #ffffff;
+}
+
+.admin-title-box h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+/* Mostra o formulário e a tabela lado a lado em telas grandes. */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  /* Em telas pequenas, coloca o formulário acima da tabela. */
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Aparência dos blocos do formulário e da tabela. */
+.admin-card {
+  background-color: #181818;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+}
+
+.card-header h2 i {
+  color: #1ed760;
+}
+/* Campos usados para cadastrar ou editar uma música. */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b3b3b3;
+}
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #242424;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: #ffffff;
+  background-color: #2a2a2a;
+  outline: none;
+}
+
+.form-group input[type="text"]::placeholder {
+  color: #727272;
+}
+/* Aparência dos botões para escolher capa e áudio. */
+input[type="file"] {
+  background-color: #242424;
+  color: #b3b3b3;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+  font-family: inherit;
+  font-size: 0.85rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #1ed760;
+  color: #000000;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #1fdf64;
+  transform: scale(1.02);
+}
+
+.input-status-text {
+  color: #b3b3b3;
+  font-size: 0.75rem;
+}
+/* Aparência dos botões de salvar e cancelar. */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #1ed760;
+  color: #000000;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1fdf64;
+  transform: scale(1.03);
+}
+
+.btn-primary:disabled {
+  background-color: #535353;
+  color: #b3b3b3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #727272;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  border-color: #ffffff;
+}
+
+.hidden {
+  display: none !important;
+}
+/* Tabela que mostra as músicas e seus botões de ação. */
+/* Em telas estreitas, permite mover a tabela para os lados. */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.song-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.song-table th, 
+.song-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #282828;
+  vertical-align: middle;
+}
+
+.song-table th {
+  color: #b3b3b3;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.admin-cover-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #282828;
+  display: block;
+}
+
+.song-title-cell {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.song-artist-cell {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action-btns button {
+  background: transparent;
+  border: none;
+  color: #b3b3b3;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.action-btns button:hover {
+  color: #ffffff;
+  background-color: #282828;
+}
+
+.btn-delete:hover {
+  color: #f15e6c !important;
+}
+
+
+/* Ajusta o formulário e a tabela para telas pequenas. */
+@media (max-width: 768px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .admin-header {
+    margin-bottom: 20px;
+  }
+
+  .admin-title-box h1 {
+    font-size: 1.6rem;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary, 
+  .btn-cancel {
+    width: 100%;
+  }
+  .song-table th, 
+  .song-table td {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+
+  .admin-cover-thumb {
+    width: 36px;
+    height: 36px;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
